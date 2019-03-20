@@ -27,6 +27,9 @@ class App extends Component {
     };
   }
 
+  activateRoom(room) {
+    this.setState({ activeRoom: room });
+  }
   
   
   render() {
@@ -34,7 +37,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         </header>
-        < RoomList firebase={firebase} />
+        < RoomList firebase={firebase} activeRoom={this.state.activeRoom} activateRoom={this.activateRoom.bind(this)}/>/>
       </div>
     );
   }
