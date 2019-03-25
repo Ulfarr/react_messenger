@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, { Component } from 'react';
 
 
 class RoomList extends React.Component {
@@ -30,15 +30,13 @@ class RoomList extends React.Component {
     event.preventDefault();
     if (this.state.newRoomName.length > 3) {
       this.roomsRef.push({ name: this.state.newRoomName });
-    } else {
-      alert('Room name must contain at least 3 characters.')
     }
     this.setState({ newRoomName: '' })
   }
   
   render() {
     return (
-      <div className="rooms">
+      <div>
         <h2>Rooms</h2>
         <form className="create-room" onSubmit={this.createRoom}>
           <input type="text" value={this.state.newRoomName} onChange={this.handleChange}/>
@@ -46,10 +44,10 @@ class RoomList extends React.Component {
         </form>
         <h3>Click a room to view and send messages.</h3>
         {this.state.rooms.map(room =>
-          <div className='roomlist' key={room.key}>
-            <h4 className={this.props.activeRoom && this.props.activeRoom.key === room.key ? 'active-room' : 'room' } onClick={() => this.props.activateRoom(room)}>
-              {room.name}
-            </h4>
+          <div className='roomlist'>
+        <h4 key={room.key} className={this.props.activeRoom && this.props.activeRoom.key === room.key ? 'active-room' : 'room' } onClick={() => this.props.activateRoom(room)}>
+            {room.name}
+        </h4>
           </div>
         )}
       </div>

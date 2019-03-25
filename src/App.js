@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import * as firebase from 'firebase';
-
 import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
+
 
 
   // Initialize Firebase
@@ -22,9 +22,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeRoom: null,
+      activeRoom: {},
       user: null
     };
+    this.activateRoom = this.activateRoom.bind(this);
   }
 
   activateRoom(room) {
@@ -37,10 +38,13 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         </header>
-        < RoomList firebase={firebase} activeRoom={this.state.activeRoom} activateRoom={this.activateRoom.bind(this)}/>/>
+        
+        < RoomList firebase={firebase} activeRoom={this.state.activeRoom} activateRoom={this.activateRoom.bind(this)}/>
+        < MessageList firebase={firebase} activeRoom={this.state.activeRoom}/>
       </div>
     );
   }
 }
+
 
 export default App;
